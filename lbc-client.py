@@ -16,8 +16,6 @@ def print_response(response):
 
 
 def make_api_call(method, url, params={}, stream=False):
-
-
     hmac_key = settings.HMAC_KEY
     hmac_secret = settings.HMAC_SECRET
     lbc_url = settings.LBC_URL
@@ -53,7 +51,6 @@ def error(msg):
 
 
 def process_arguments(arguments):
-
     if arguments[1] == "account_info":
         if got_args(1):
             print_response(make_api_call("GET","/api/account_info/"+arguments[2]+"/"))
@@ -78,10 +75,6 @@ def process_arguments(arguments):
     elif arguments[1]=="contact_info":
         print_response(make_api_call("GET","/api/contact_info/", params={ "contacts" : arguments[2] if got_args(1) else None}))
 
-    elif arguments[1]=="contact_info_user":
-        print_response(make_api_call("GET","/api/contact_info/"+arguments[2]+"/"))
-
-    # params
     elif arguments[1]=="recent_messages":
         print_response(make_api_call("GET","/api/recent_messages/",params={ "before" : arguments[2] if got_args(1) else None}))
 
